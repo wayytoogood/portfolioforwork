@@ -1,0 +1,79 @@
+@use '../abstracts' as *;
+
+.comments {
+  background: var(--grey-100);
+
+  &-center {
+    display: grid;
+    row-gap: 1.25rem;
+  }
+}
+
+.single-comment {
+  display: flex;
+  background: var(--white);
+  padding: 1.5rem;
+  column-gap: 1.25rem;
+  border-radius: 0.25rem;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition);
+
+  &.deleted {
+    // height: 0;
+    opacity: 0;
+  }
+
+  @include lg {
+    padding: 2rem;
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  &-middle {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+    margin-bottom: 0.85rem;
+
+    @include md {
+      column-gap: 3rem;
+    }
+  }
+
+  p {
+    transition: var(--transition);
+  }
+
+  p.editable {
+    border: 1px solid var(--grey-300);
+    padding: 0.5rem 1rem;
+  }
+
+  &-func {
+    display: flex;
+    column-gap: 1.25rem;
+
+    & > * {
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .comment-edit-icon {
+      color: var(--green-dark);
+    }
+
+    .comment-delete-icon {
+      color: var(--red-dark);
+    }
+  }
+}

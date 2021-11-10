@@ -1,0 +1,108 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin gridCenter {
+  display: grid;
+  place-items: center;
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin gridColumn($cc, $cw, $g: 0) {
+  display: grid;
+  grid-template-columns: repeat($cc, $cw);
+  gap: $g;
+}
+
+@mixin gridLayout($cols, $g: 0) {
+  display: grid;
+  grid-template-columns: $cols;
+  gap: $g;
+}
+
+// Breakpoints
+$breakpoints-u: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+$breakpoints-d: (
+  'xs': 0,
+  'sm': 575px,
+  'md': 767px,
+  'lg': 991px,
+  'xl': 1199px,
+);
+
+@mixin xs($direction: up) {
+  @if ($direction == up) {
+    @media screen and (min-width: map-get($breakpoints-u, 'xs')) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: map-get($breakpoints-d, 'xs')) {
+      @content;
+    }
+  }
+}
+@mixin sm($direction: up) {
+  @if ($direction == up) {
+    @media screen and (min-width: map-get($breakpoints-u, 'sm')) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: map-get($breakpoints-d, 'sm')) {
+      @content;
+    }
+  }
+}
+@mixin md($direction: up) {
+  @if ($direction == up) {
+    @media screen and (min-width: map-get($breakpoints-u, 'md')) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: map-get($breakpoints-d, 'md')) {
+      @content;
+    }
+  }
+}
+@mixin lg($direction: up) {
+  @if ($direction == up) {
+    @media screen and (min-width: map-get($breakpoints-u, 'lg')) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: map-get($breakpoints-d, 'lg')) {
+      @content;
+    }
+  }
+}
+@mixin xl($direction: up) {
+  @if ($direction == up) {
+    @media screen and (min-width: map-get($breakpoints-u, 'xl')) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: map-get($breakpoints-d, 'xl')) {
+      @content;
+    }
+  }
+}
+
+@mixin respond($bp) {
+  @media only screen and (min-width: $bp) {
+    @content;
+  }
+}

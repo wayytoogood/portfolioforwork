@@ -1,0 +1,89 @@
+/*
+====================
+Default Font Styles
+====================
+*/
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+} /*16px*/
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  margin-bottom: 0.75rem;
+  font-family: var(--headingFont);
+  font-weight: 400;
+  line-height: 1.2;
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+}
+
+h2 {
+  font-size: 2.441rem;
+}
+
+h3 {
+  font-size: 1.953rem;
+}
+
+h4 {
+  font-size: 1.563rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+small,
+.text-small {
+  font-size: var(--smallText);
+}
+
+p.p {
+  margin-bottom: 1.5rem;
+}
+
+/* title */
+.about-title {
+  position: relative;
+  width: max-content;
+
+  .underline {
+    position: absolute;
+    background: var(--primary-500);
+    height: 0.25rem;
+    top: 120%;
+    left: 0;
+    width: 5rem;
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin: 0 auto 3.5rem;
+
+  .underline {
+    background: var(--primary-500);
+    width: 5.5rem;
+    height: 0.25rem;
+    margin: 0 auto;
+    margin-top: -0.25rem;
+  }
+}
+
+.about-title,
+.section-title {
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}

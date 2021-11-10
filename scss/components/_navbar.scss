@@ -1,0 +1,117 @@
+@use '../abstracts' as *;
+
+.nav {
+  background-color: var(--white);
+  overflow: hidden;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: var(--shadow-2);
+    z-index: 100;
+  }
+
+  .nav-center {
+    @include md {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem 0;
+  }
+
+  .nav-logo {
+    h1 {
+      display: flex;
+      column-gap: 0.3rem;
+      text-shadow: 1px 6px 12px rgba(0, 0, 0, 0.225);
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0;
+
+      @include lg {
+        font-size: 2rem;
+      }
+    }
+
+    .black {
+      color: var(--grey-800);
+    }
+
+    .colored {
+      color: var(--primary-500);
+    }
+  }
+
+  .nav-toggle {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    @include gridCenter;
+
+    @include md {
+      display: none;
+    }
+
+    i {
+      font-size: 2rem;
+      color: var(--primary-500);
+    }
+  }
+
+  .nav-list {
+    height: 0;
+    transition: var(--transition);
+
+    &.open {
+      height: 180px;
+      padding-bottom: 1.25rem;
+    }
+
+    @include md {
+      display: flex;
+      height: auto;
+      column-gap: 3rem;
+    }
+
+    @include lg {
+      column-gap: 4rem;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 1rem;
+
+      @include md {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--grey-600);
+      transition: var(--transition);
+
+      @include lg {
+        font-size: 1.1rem;
+      }
+
+      &:hover,
+      &:focus {
+        color: var(--primary-500);
+      }
+    }
+  }
+}

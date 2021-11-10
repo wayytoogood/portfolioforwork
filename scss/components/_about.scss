@@ -1,0 +1,54 @@
+@use '../abstracts' as *;
+
+.about {
+  background: var(--grey-100);
+
+  @include lg {
+    padding-bottom: 7rem;
+  }
+
+  &-center {
+    display: grid;
+    gap: 3.5rem;
+
+    @include lg {
+      grid-template-columns: repeat(2, auto);
+      align-items: center;
+      gap: 3.75rem;
+    }
+  }
+
+  &-img-container {
+    width: 320px;
+    justify-self: center;
+    position: relative;
+
+    @include lg {
+      margin-left: 2rem;
+    }
+
+    @include lg {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 2rem;
+        left: -2rem;
+        width: 100%;
+        height: 100%;
+        border: 0.25rem solid var(--primary-500);
+        border-radius: 0.5rem;
+        z-index: 1;
+      }
+    }
+
+    img {
+      position: relative;
+      z-index: 2;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &-text-container {
+    margin-top: 2.5rem;
+  }
+}

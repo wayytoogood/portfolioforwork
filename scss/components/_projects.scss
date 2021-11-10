@@ -1,0 +1,66 @@
+@use '../abstracts' as *;
+
+.projects {
+  &__center {
+    display: grid;
+    gap: 2rem;
+
+    @include respond(700px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__item {
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-2);
+    transition: var(--transition);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--white);
+      border-radius: 0.5rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    &:hover::after {
+      opacity: 1;
+      transform: scale(0.8);
+    }
+
+    &:hover &-content {
+      opacity: 1;
+    }
+  }
+
+  &__item-image {
+    height: 16.5rem;
+    object-fit: cover;
+  }
+
+  &__item-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#229b79, 0.875);
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    color: var(--white);
+    opacity: 0;
+    transition: var(--transition);
+  }
+}
