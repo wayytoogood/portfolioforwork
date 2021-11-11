@@ -56,6 +56,31 @@ scrollLinks.forEach((link) => {
 // Placing Comments
 const commentsCenter = document.querySelector('.comments-center')
 
+// Event listener for each comment
+const commentEventListener = (comment) => {
+  return comment.addEventListener('click', (e) => {
+    if (e.target.classList.contains('comment-edit-icon')) {
+      const textArea = comment.querySelector('.single-comment-text')
+      const isEditable = textArea.getAttribute('contenteditable')
+      if (isEditable === 'false' || isEditable === null) {
+        // console.log(isEditable)
+        textArea.setAttribute('contenteditable', true)
+        textArea.classList.add('editable')
+      } else {
+        textArea.setAttribute('contenteditable', false)
+        textArea.classList.remove('editable')
+      }
+    }
+
+    if (e.target.classList.contains('comment-delete-icon')) {
+      comment.classList.add('deleted')
+      setTimeout(() => {
+        commentsCenter.removeChild(comment)
+      }, 300)
+    }
+  })
+}
+
 window.addEventListener('load', () => {
   commentsCenter.innerHTML = comments
     .map((comment) => {
@@ -83,28 +108,66 @@ window.addEventListener('load', () => {
   const singleComments = document.querySelectorAll('.single-comment')
 
   singleComments.forEach((comment) => {
-    comment.addEventListener('click', (e) => {
-      if (e.target.classList.contains('comment-edit-icon')) {
-        const textArea = comment.querySelector('.single-comment-text')
-        const isEditable = textArea.getAttribute('contenteditable')
-        if (isEditable === 'false' || isEditable === null) {
-          // console.log(isEditable)
-          textArea.setAttribute('contenteditable', true)
-          textArea.classList.add('editable')
-        } else {
-          console.log(isEditable)
-          textArea.setAttribute('contenteditable', false)
-          textArea.classList.remove('editable')
-        }
-      }
-
-      if (e.target.classList.contains('comment-delete-icon')) {
-        comment.classList.add('deleted')
-        setTimeout(() => {
-          commentsCenter.removeChild(comment)
-          // comment.style.display = 'none'
-        }, 300)
-      }
-    })
+    commentEventListener(comment)
   })
+})
+
+// Adding Comments
+const months = [
+  'Ocak',
+  'Şubat',
+  'Mart',
+  'Nisan',
+  'Mayıs',
+  'Haziran',
+  'Temmuz',
+  'Ağustos',
+  'Eylül',
+  'Ekim',
+  'Kasım',
+  'Aralık',
+]
+
+const commentAddBtn = document.querySelector('.comments-add button')
+const commentTextarea = document.querySelector('.comments-add textarea')
+
+commentAddBtn.addEventListener('click', (e) => {
+  const text = commentTextarea.value
+  if (text) {
+    e.preventDefault()
+    const date = new Date()
+    const day = date.getDate()
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+    const fullDate = `${day} ${month} ${year}`
+
+    commentsCenter.insertAdjacentHTML(
+      'afterbegin',
+      `<article data-id="0" class="single-comment o-none">
+          <img style="width: 64px; height: 64px;" src="./images/comment-userself.jpg" alt="user" />
+          <div>
+            <h4>Admin</h4>
+            <div class="single-comment-middle">
+              <p class="date" contenteditable="false">${fullDate}</p>
+              <div class="single-comment-func">
+                <i class="fas fa-pencil-alt comment-edit-icon"></i>
+                <i class="fas fa-trash comment-delete-icon"></i>
+              </div>
+            </div>
+            <p class="single-comment-text">
+              ${text}
+            </p>
+          </div>
+        </article>`
+    )
+
+    commentTextarea.value = ''
+
+    const addedComment = document.querySelector('.single-comment.o-none')
+    // making transition possible
+    setTimeout(() => {
+      addedComment.classList.remove('o-none')
+      commentEventListener(addedComment)
+    }, 150)
+  }
 })

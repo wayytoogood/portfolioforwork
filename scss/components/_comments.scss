@@ -7,6 +7,37 @@
     display: grid;
     row-gap: 1.25rem;
   }
+
+  &-add {
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    margin: 0 auto 2.5rem;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    textarea {
+      flex-grow: 1;
+      height: 7.5rem;
+      border-radius: 0.25rem;
+      font-family: inherit;
+      font-size: inherit;
+      border: 1px solid var(--grey-500);
+      color: var(--grey-700);
+      padding: 0.75rem;
+      resize: none;
+    }
+
+    button {
+      padding: 0.75rem;
+    }
+  }
 }
 
 .single-comment {
@@ -17,6 +48,10 @@
   border-radius: 0.25rem;
   box-shadow: var(--shadow-2);
   transition: var(--transition);
+
+  &.o-none {
+    opacity: 0;
+  }
 
   &.deleted {
     // height: 0;

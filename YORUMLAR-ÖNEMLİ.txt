@@ -1,0 +1,2 @@
+Yorumlar kısmı js tarafından oluşturuluyor ve direkt index.html'i açtığınızda http server'ında olmadığımız için hata alıyoruz ve dolayısıyla ekranda gözükmüyorlar.
+Gözükmesi için projemizi bir Visual Studio Code eklentisi olan Live Server'la ya da onun eş değeri olan herhangi bir eklentiyle açmamız yeterli.
